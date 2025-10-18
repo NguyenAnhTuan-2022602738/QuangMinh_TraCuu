@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "product-lookup-system/server/api/[...path].js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "product-lookup-system/client/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "product-lookup-system/server/api/[...path].js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "product-lookup-system/client/build/$1"
+    }
+  ]
+}
