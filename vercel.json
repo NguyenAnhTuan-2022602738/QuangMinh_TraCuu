@@ -23,7 +23,7 @@
     },
     {
       "src": "/.*",
-      "dest": "/index.html"
+      "dest": "product-lookup-system/client/build/index.html"
     }
   ]
 }
