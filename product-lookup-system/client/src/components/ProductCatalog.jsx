@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useCustomer } from '../context/CustomerContext';
 import axios from 'axios';
 import './ProductCatalog.css';
@@ -14,11 +14,7 @@ const ProductCatalog = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [productsPerPage, setProductsPerPage] = useState(6); // Mặc định hiển thị 6 sản phẩm
 
-    useEffect(() => {
-        fetchProducts();
-    }, [customerType]);
-
-    const fetchProducts = async () => {
+    const fetchProducts = useCallback(async () => {
         try {
             setLoading(true);
             // Sử dụng biến API_URL từ môi trường hoặc fallback về localhost nếu không có
@@ -37,7 +33,11 @@ const ProductCatalog = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [customerType]);
+
+    useEffect(() => {
+        fetchProducts();
+    }, [fetchProducts]);
 
     const filteredProducts = products.filter(product => {
         const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;

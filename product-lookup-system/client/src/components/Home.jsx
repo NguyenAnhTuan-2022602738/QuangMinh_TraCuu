@@ -1,25 +1,13 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useCustomer } from '../context/CustomerContext';
 import './Home.css';
 
 const Home = () => {
     const { customerType, locked } = useCustomer();
-    const location = useLocation();
     
     // Check if we're on a price-type specific path
     const priceTypePrefix = locked ? `/${customerType}` : '';
-    
-    const getPriceTypeName = (type) => {
-        const names = {
-            'BBCL': 'Bán buôn chính lẻ',
-            'BBPT': 'Bán buôn phụ tùng',
-            'BL': 'Bán lẻ',
-            'BLVIP': 'Bán lẻ VIP',
-            'HONDA247': 'Honda 247'
-        };
-        return names[type] || type;
-    };
 
     return (
         <div className="home">
@@ -103,7 +91,7 @@ const Home = () => {
                     <div className="cta-card">
                         <h2>Bắt đầu tra cứu ngay hôm nay</h2>
                         <p>Truy cập hàng nghìn sản phẩm với giá cạnh tranh</p>
-                        <Link to="/catalog" className="btn btn-primary btn-lg">
+                        <Link to={`${priceTypePrefix}/catalog`} className="btn btn-primary btn-lg">
                             Khám phá ngay
                         </Link>
                     </div>

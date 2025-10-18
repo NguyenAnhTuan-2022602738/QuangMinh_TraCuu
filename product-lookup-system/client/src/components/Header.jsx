@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { useCustomer } from '../context/CustomerContext';
 import CustomerTypeSelector from './CustomerTypeSelector';
 import './Header.css';
 
 const Header = ({ showSelector = true, priceType = null }) => {
-    const { locked } = useCustomer();
     const [menuOpen, setMenuOpen] = useState(false);
     
     // Build navigation paths based on whether price type is locked

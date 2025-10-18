@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, useLocation, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { CustomerProvider } from '../context/CustomerContext';
 import Header from './Header';
 import Footer from './Footer';
@@ -39,19 +39,6 @@ const App = () => {
 };
 
 const AppWithPriceType = ({ priceType }) => {
-    const location = useLocation();
-    
-    // Extract base path without price type prefix
-    const getBasePath = () => {
-        if (priceType) {
-            // Remove price type prefix from path
-            const path = location.pathname.replace(`/${priceType}`, '') || '/';
-            return path;
-        }
-        return location.pathname;
-    };
-    
-    const basePath = getBasePath();
     const showSelector = !priceType; // Only show selector if no price type locked
     
     return (
