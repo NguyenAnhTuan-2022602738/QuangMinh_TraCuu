@@ -19,8 +19,11 @@
       "dest": "product-lookup-system/server/api/[...path].js"
     },
     {
-      "src": "/(.*)",
-      "dest": "product-lookup-system/client/build/$1"
+      "handle": "filesystem"
+    },
+    {
+      "src": "/.*",
+      "dest": "/index.html"
     }
   ]
 }
